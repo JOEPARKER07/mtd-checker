@@ -31,8 +31,14 @@ All three map directly to sections already built into the site, so genuine answe
 - Site: sessions by UTM source, affiliate link clicks, email signups, affiliate conversions (once those are live).
 
 ## Standing approvals
-None granted yet. Every piece of content — Reddit comment, Reddit post, TikTok script, TikTok caption — goes into `APPROVALS/` for review until the user explicitly grants standing approval for a specific, narrow content type (e.g. "you can auto-post FAQ-answer comments in r/X without review").
+**Granted 2026-06-25: full standing approval to post on Reddit and TikTok without per-item review.** User was shown the risk (irreversible bans/blacklisting) and explicitly chose full autonomy over the skim-approve queue. The `APPROVALS/` folder and posting log are kept as a record of what went out, not a pre-publish gate.
+
+This does NOT relax the hard "never" list (no fake/multiple accounts, no vote manipulation, no bought engagement, no impersonation, no ToS violations) or the per-subreddit rule-verification gate in subreddits.md — those are absolute regardless of posting autonomy.
 
 ## Open risks / riskiest assumptions
 - That genuinely helpful participation from a near-zero-karma account will be accepted by these communities at all, rather than auto-filtered by spam detection regardless of content quality.
 - That the relevant subreddits permit any self-promotion at all once we check — some ban it outright, in which case the plan for that community becomes "be a real, anonymous, helpful participant, no tool mentions, ever."
+
+## Account inventory (live)
+- **Reddit:** u/Beneficial-Mark-1584 (3yr old, ~1 karma — link-free phase active)
+- **TikTok:** @mtdchecker, display name "MTD Checker", bio: "Free tool: find your exact Making Tax Digital date. mtd-checker.vercel.app", branded with green £ logo. Account is currently set to private — needs switching to public before any content goes out.
