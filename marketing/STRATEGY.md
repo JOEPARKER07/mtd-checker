@@ -41,4 +41,4 @@ This does NOT relax the hard "never" list (no fake/multiple accounts, no vote ma
 
 ## Account inventory (live)
 - **Reddit:** u/Beneficial-Mark-1584 (3yr old, ~1 karma — link-free phase active)
-- **TikTok:** @mtdchecker, display name "MTD Checker", bio: "Free tool: find your exact Making Tax Digital date. mtd-checker.vercel.app", branded with green £ logo. Account is currently set to private — needs switching to public before any content goes out.
+- **TikTok:** @mtdchecker, display name "MTD Checker", bio: "Free tool: find your exact Making Tax Digital date. mtd-checker.vercel.app", branded with green £ logo. **Switched to public 2026-06-25**, ready for first video.
