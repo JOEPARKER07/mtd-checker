@@ -10,3 +10,8 @@
 **Why:** MTD thresholds roll out in stages through 2026-2028, creating a multi-year wave of fresh, recurring search demand. GOV.UK's official checker exists but is generic and doesn't personalize or follow up — leaves room for a better, narrower tool. Clear, established affiliate programs exist for monetization.
 **Riskiest assumption:** People search for this ahead of their own threshold year rather than only in the weeks before their deadline. Must validate with real search-trend data in Phase 1 before building out full personalization logic.
 **Status:** Selected, not yet validated.
+
+## 2026-06-25 — Deployed via GitHub + Vercel, built out full content depth
+**Decision:** Pushed the repo to github.com/JOEPARKER07/mtd-checker, connected to Vercel for auto-deploy on every push to main. Expanded the single-page tool with SEO metadata, FAQ schema (JSON-LD), worked examples, a penalties section (sourced from HMRC's points-based penalty system), and a pre-deadline checklist.
+**Why:** Auto-deploy on push removes a manual step from every future content/code change, fitting the "autonomous agents" goal for later phases. The added content depth is the main lever to outrank GOV.UK's bare official checker in search — thin tools don't rank, useful explainers do.
+**Status:** Live at https://mtd-checker.vercel.app/. Still on free Vercel subdomain — no custom domain purchased yet.

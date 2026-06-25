@@ -9,6 +9,7 @@ _Last updated: 2026-06-25_
 - Built working tool page ([site/index.html](site/index.html)) — calculator, timeline, software recs (affiliate links not yet live), email capture UI (not yet wired)
 - **Live at https://mtd-checker.vercel.app/** — deployed via GitHub (JOEPARKER07/mtd-checker) + Vercel, auto-deploys on every push to main
 - Verified live site loads and the calculator works end to end
+- Built out full SEO/content depth: meta tags, FAQ schema, worked examples, penalties section, pre-deadline checklist, shareable result links, form validation, accessibility pass, robots.txt + sitemap.xml
 
 ## In progress
 - Validating riskiest assumption: real search demand for MTD-related queries now vs. closer to each threshold deadline
