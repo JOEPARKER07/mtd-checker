@@ -2,7 +2,7 @@
 <html lang="en-GB">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>MTD Checker — When Does Making Tax Digital Affect Me? (Free UK Tool)</title>
 <meta name="description" content="Free tool: enter your self-employment and property income to find the exact date HMRC's Making Tax Digital for Income Tax rules apply to you, plus what to do next.">
 <link rel="canonical" href="https://mtd-checker.vercel.app/">
@@ -89,6 +89,7 @@
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
+  html, body { overflow-x: hidden; width: 100%; }
   body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -96,7 +97,8 @@
     color: var(--ink);
     line-height: 1.55;
   }
-  .wrap { max-width: 680px; margin: 0 auto; padding: 24px 20px 60px; }
+  img, table { max-width: 100%; }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 24px 20px 60px; width: 100%; }
   header { text-align: center; margin-bottom: 28px; }
   .badge {
     display: inline-block;
@@ -129,8 +131,9 @@
     padding: 12px 14px;
     border: 1px solid var(--border);
     border-radius: 10px;
-    font-size: 1.05rem;
+    font-size: 16px;
     width: 100%;
+    min-width: 0;
     -moz-appearance: textfield;
   }
   input[type=number]:focus { outline: 2px solid var(--accent); border-color: var(--accent); }
@@ -141,6 +144,7 @@
     margin-top: 22px;
     width: 100%;
     padding: 14px;
+    min-height: 48px;
     border: none;
     border-radius: 10px;
     background: var(--accent);
@@ -177,6 +181,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
     padding: 12px 14px;
     border: 1px solid var(--border);
     border-radius: 10px;
@@ -185,8 +191,9 @@
   .software-item a:hover { text-decoration: underline; }
   .actions-row { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
   .actions-row button {
-    flex: 1;
-    min-width: 140px;
+    flex: 1 1 140px;
+    min-width: 0;
+    min-height: 44px;
     padding: 10px 14px;
     border: 1px solid var(--border);
     border-radius: 10px;
@@ -200,15 +207,17 @@
   .email-capture { margin-top: 18px; }
   .email-row { display: flex; gap: 8px; flex-wrap: wrap; }
   .email-row input[type=email] {
-    flex: 1;
-    min-width: 200px;
+    flex: 1 1 200px;
+    min-width: 0;
     padding: 12px 14px;
     border: 1px solid var(--border);
     border-radius: 10px;
-    font-size: 1rem;
+    font-size: 16px;
   }
   .email-row button {
+    flex: 0 0 auto;
     padding: 12px 18px;
+    min-height: 44px;
     border: none;
     border-radius: 10px;
     background: var(--ink);
@@ -216,20 +225,26 @@
     font-weight: 600;
     cursor: pointer;
   }
+  @media (max-width: 460px) {
+    .email-row { flex-direction: column; }
+    .email-row input[type=email], .email-row button { width: 100%; }
+  }
   .content-section { margin-top: 36px; }
   .content-section p { color: var(--ink); }
   .content-section ul, .content-section ol { padding-left: 20px; }
   .content-section li { margin-bottom: 8px; }
+  .table-scroll { overflow-x: auto; margin-top: 12px; -webkit-overflow-scrolling: touch; }
   .example-table {
     width: 100%;
+    min-width: 480px;
     border-collapse: collapse;
-    margin-top: 12px;
     font-size: 0.9rem;
   }
   .example-table th, .example-table td {
     text-align: left;
     padding: 10px 8px;
     border-bottom: 1px solid var(--border);
+    white-space: nowrap;
   }
   .example-table th { color: var(--muted); font-weight: 600; }
   details.faq-item {
@@ -243,8 +258,10 @@
     list-style: none;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    gap: 8px;
   }
+  details.faq-item summary > span { flex: 1; }
   details.faq-item summary::-webkit-details-marker { display: none; }
   details.faq-item summary::after {
     content: "+";
@@ -271,9 +288,22 @@
     border-radius: 6px;
     z-index: 10;
   }
+  @media (max-width: 600px) {
+    .wrap { padding: 16px 14px 48px; }
+    .card { padding: 18px; }
+    .result-banner { padding: 14px; }
+    .actions-row { flex-direction: column; }
+    .actions-row button { flex: 1 1 auto; width: 100%; }
+  }
   @media (max-width: 420px) {
     h1 { font-size: 1.45rem; }
-    .card { padding: 18px; }
+    .sub { font-size: 0.95rem; }
+    h2 { font-size: 1.08rem; }
+    .card { padding: 14px; }
+    .result-banner .date { font-size: 1.3rem; }
+    .field-row { gap: 6px; }
+    .timeline-item { font-size: 0.88rem; }
+    .timeline-item span:first-child { padding-right: 8px; }
   }
 </style>
 </head>
@@ -336,17 +366,19 @@
 
   <section class="content-section" aria-labelledby="example-heading">
     <h2 id="example-heading">Worked examples</h2>
-    <table class="example-table">
-      <thead>
-        <tr><th>Self-employment</th><th>Property</th><th>Total qualifying income</th><th>MTD applies from</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>£35,000</td><td>£0</td><td>£35,000</td><td>6 April 2027</td></tr>
-        <tr><td>£18,000</td><td>£15,000</td><td>£33,000</td><td>6 April 2027</td></tr>
-        <tr><td>£12,000</td><td>£10,000</td><td>£22,000</td><td>6 April 2028</td></tr>
-        <tr><td>£8,000</td><td>£5,000</td><td>£13,000</td><td>Not yet (below £20k)</td></tr>
-      </tbody>
-    </table>
+    <div class="table-scroll">
+      <table class="example-table">
+        <thead>
+          <tr><th>Self-employment</th><th>Property</th><th>Total qualifying income</th><th>MTD applies from</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>£35,000</td><td>£0</td><td>£35,000</td><td>6 April 2027</td></tr>
+          <tr><td>£18,000</td><td>£15,000</td><td>£33,000</td><td>6 April 2027</td></tr>
+          <tr><td>£12,000</td><td>£10,000</td><td>£22,000</td><td>6 April 2028</td></tr>
+          <tr><td>£8,000</td><td>£5,000</td><td>£13,000</td><td>Not yet (below £20k)</td></tr>
+        </tbody>
+      </table>
+    </div>
     <p class="hint">These combine self-employment and property income exactly as HMRC does when assessing your qualifying income against each threshold.</p>
   </section>
 
