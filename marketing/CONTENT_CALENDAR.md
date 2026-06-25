@@ -29,3 +29,10 @@ Created 2026-06-25 as a Brand Account under the existing Google login (no new OT
 | 2026-06-25 | YouTube Shorts | What do I actually do about it? | Video | Posted, Public | https://youtube.com/shorts/F9yvhr6Bkm4 |
 
 Remaining buffer (video3_penalties, video4_landlords, video5_workedexample) to be staggered over the coming days rather than posted same-day, matching the human-paced cadence used for TikTok.
+
+## Voice upgrade (2026-06-25)
+Switched video 1's narration from macOS `say` (robotic) to ttsmp3.com's free AI tier (OpenAI "Onyx" voice, natural-sounding, no account needed). Free tier caps at 1,000 chars/day — roughly one video's worth of narration per day. Old video1 posts deleted and replaced on both platforms:
+- TikTok: old post had 26 views, deleted, replaced with Onyx version (public)
+- YouTube: old short had 1 view, deleted, replaced with Onyx version (public)
+
+Going forward: regenerate video2 (scheduled tomorrow on TikTok) and video3 (scheduled tomorrow on YouTube) with Onyx before they post, then continue videos 4 and 5 at ~1/day pace to stay within the free quota.
