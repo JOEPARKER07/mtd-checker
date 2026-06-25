@@ -29,6 +29,7 @@ until explicitly trusted to skip the queue), and respect platform rate limits.
 - `site/` — the landing page + tool itself (added in Phase 2)
 - `agents/` — scheduled automation jobs (added in Phase 3)
 - `research/` — research agent output (keyword findings, topic ideas)
+- `marketing/` — growth/distribution: STRATEGY.md, voice.md, subreddits.md (target communities + their rules), research_tiktok.md, utm_scheme.md, CONTENT_CALENDAR.md, APPROVALS/ (review queue — nothing posts without sign-off until standing approval is granted)
 
 ## Current phase
 

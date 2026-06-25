@@ -15,3 +15,9 @@
 **Decision:** Pushed the repo to github.com/JOEPARKER07/mtd-checker, connected to Vercel for auto-deploy on every push to main. Expanded the single-page tool with SEO metadata, FAQ schema (JSON-LD), worked examples, a penalties section (sourced from HMRC's points-based penalty system), and a pre-deadline checklist.
 **Why:** Auto-deploy on push removes a manual step from every future content/code change, fitting the "autonomous agents" goal for later phases. The added content depth is the main lever to outrank GOV.UK's bare official checker in search — thin tools don't rank, useful explainers do.
 **Status:** Live at https://mtd-checker.vercel.app/. Still on free Vercel subdomain — no custom domain purchased yet.
+
+## 2026-06-25 — Marketing operator role established, Reddit/TikTok distribution scaffolded
+**Decision:** Built `marketing/` with strategy, voice guide, candidate subreddit list, TikTok research, UTM scheme, and an approval queue. No content drafted or posted yet.
+**Why:** User requested a dedicated growth/marketing operator role for TikTok and Reddit, with platform ToS treated as hard constraints and human approval required on everything public until standing approval is granted.
+**Key constraint discovered:** Reddit account (u/Beneficial-Mark-1584) is 3 years old but ~1 karma — a dormant-then-active account is itself a spam signal, so the plan opens with a link-free, comment-only phase to build genuine history before any promotional content. Per-subreddit rules can't be fetched by our tools directly (Reddit blocks it), so live verification is a recurring human gate before any post, not a one-time research task.
+**Status:** Research/scaffolding done. No content created or posted. TikTok account doesn't exist yet (needs user's identity verification to create).
