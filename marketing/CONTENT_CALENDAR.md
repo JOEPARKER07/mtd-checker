@@ -19,3 +19,13 @@ _Empty until Phase 1 research (subreddit rule verification, TikTok niche researc
 | video5_workedexample | Am I affected? (worked example) | marketing/content_drafts/video5_assets/video5_workedexample.mp4 | Rendered, queued |
 
 Posting cadence: roughly every 36-48h, not back-to-back, to keep the account looking human-paced rather than bot-driven (per STRATEGY.md). video2_whattodo is scheduled for 2026-06-27 11:03 via the post-tiktok-video2 scheduled task.
+
+## YouTube Shorts channel (@MTDChecker)
+Created 2026-06-25 as a Brand Account under the existing Google login (no new OTP needed) — separate from personal channel. Branded with same £ logo, description, link to mtd-checker.vercel.app.
+
+| Date | Platform | Content pillar | Type | Status | Link |
+|---|---|---|---|---|---|
+| 2026-06-25 | YouTube Shorts | Am I affected and when? | Video | Posted, Public | https://youtube.com/shorts/izeeCcayrZE |
+| 2026-06-25 | YouTube Shorts | What do I actually do about it? | Video | Posted, Public | https://youtube.com/shorts/F9yvhr6Bkm4 |
+
+Remaining buffer (video3_penalties, video4_landlords, video5_workedexample) to be staggered over the coming days rather than posted same-day, matching the human-paced cadence used for TikTok.
