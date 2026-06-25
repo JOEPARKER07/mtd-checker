@@ -1,32 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MTD Checker — When does Making Tax Digital affect me?</title>
-<meta name="description" content="Free tool: find out the exact date HMRC's Making Tax Digital for Income Tax rules apply to you, based on your self-employment and property income.">
+<title>MTD Checker — When Does Making Tax Digital Affect Me? (Free UK Tool)</title>
+<meta name="description" content="Free tool: enter your self-employment and property income to find the exact date HMRC's Making Tax Digital for Income Tax rules apply to you, plus what to do next.">
+<link rel="canonical" href="https://mtd-checker.vercel.app/">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="MTD Checker — When Does Making Tax Digital Affect Me?">
+<meta property="og:description" content="Free tool: find the exact date Making Tax Digital for Income Tax applies to you, based on your self-employment and property income.">
+<meta property="og:url" content="https://mtd-checker.vercel.app/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MTD Checker — When Does Making Tax Digital Affect Me?">
+<meta name="twitter:description" content="Free tool: find the exact date Making Tax Digital for Income Tax applies to you.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a6e4e'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'%3E%C2%A3%3C/text%3E%3C/svg%3E">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Making Tax Digital for Income Tax?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Making Tax Digital (MTD) for Income Tax is an HMRC initiative requiring self-employed people and landlords above certain income thresholds to keep digital records and send quarterly updates using compatible software, instead of filing one annual Self Assessment return."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When does Making Tax Digital start?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MTD for Income Tax rolls out in stages: from 6 April 2026 if your qualifying income was over £50,000 in 2024/25; from 6 April 2027 if over £30,000 in 2025/26; and from 6 April 2028 if over £20,000 in 2026/27."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What counts as qualifying income for MTD?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Qualifying income is your total gross turnover from self-employment and property income combined, before expenses are deducted. If you have multiple income sources they are added together when checking against the threshold."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need new software for Making Tax Digital?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You will need HMRC-recognised MTD-compatible software, such as FreeAgent, QuickBooks, Xero or Coconut, to keep digital records and submit quarterly updates."
+      }
+    }
+  ]
+}
+</script>
+
 <style>
   :root {
     --ink: #1a2330;
     --muted: #5b6470;
     --accent: #0a6e4e;
     --accent-light: #e6f4ee;
+    --warn: #9a5b00;
+    --warn-light: #fdf1de;
     --bg: #fafbfc;
     --card: #ffffff;
     --border: #e2e6ea;
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background: var(--bg);
     color: var(--ink);
-    line-height: 1.5;
+    line-height: 1.55;
   }
-  .wrap { max-width: 640px; margin: 0 auto; padding: 24px 20px 60px; }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 24px 20px 60px; }
   header { text-align: center; margin-bottom: 28px; }
-  h1 { font-size: 1.6rem; margin: 0 0 8px; }
-  .sub { color: var(--muted); font-size: 1rem; margin: 0; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 10px;
+  }
+  h1 { font-size: 1.7rem; margin: 0 0 8px; }
+  .sub { color: var(--muted); font-size: 1.02rem; margin: 0; }
+  h2 { font-size: 1.2rem; margin: 0 0 12px; }
   .card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -37,10 +107,7 @@
   label { display: block; font-weight: 600; font-size: 0.92rem; margin: 16px 0 6px; }
   label:first-of-type { margin-top: 0; }
   .field-row { display: flex; align-items: center; gap: 8px; }
-  .field-row span.prefix {
-    color: var(--muted);
-    font-size: 1rem;
-  }
+  .field-row span.prefix { color: var(--muted); font-size: 1rem; }
   input[type=number] {
     flex: 1;
     padding: 12px 14px;
@@ -48,9 +115,12 @@
     border-radius: 10px;
     font-size: 1.05rem;
     width: 100%;
+    -moz-appearance: textfield;
   }
   input[type=number]:focus { outline: 2px solid var(--accent); border-color: var(--accent); }
   .hint { color: var(--muted); font-size: 0.84rem; margin-top: 4px; }
+  .error-text { color: #b3261e; font-size: 0.84rem; margin-top: 4px; display: none; }
+  .error-text.show { display: block; }
   button.primary {
     margin-top: 22px;
     width: 100%;
@@ -64,17 +134,19 @@
     cursor: pointer;
   }
   button.primary:active { opacity: 0.9; }
+  button.primary:focus-visible { outline: 3px solid #073f2c; }
   #result { display: none; }
   #result.show { display: block; }
   .result-banner {
     background: var(--accent-light);
     border-radius: 10px;
     padding: 18px;
-    margin-bottom: 16px;
   }
-  .result-banner .date { font-size: 1.4rem; font-weight: 700; color: var(--accent); margin: 4px 0; }
+  .result-banner.not-yet { background: var(--warn-light); }
+  .result-banner .date { font-size: 1.5rem; font-weight: 700; color: var(--accent); margin: 4px 0; }
+  .result-banner.not-yet .date { color: var(--warn); }
   .result-banner p { margin: 4px 0; }
-  .timeline { margin-top: 10px; }
+  .timeline { margin-top: 16px; }
   .timeline-item {
     display: flex;
     justify-content: space-between;
@@ -93,11 +165,22 @@
     border: 1px solid var(--border);
     border-radius: 10px;
   }
-  .software-item a {
-    color: var(--accent);
+  .software-item a { color: var(--accent); font-weight: 600; text-decoration: none; }
+  .software-item a:hover { text-decoration: underline; }
+  .actions-row { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+  .actions-row button {
+    flex: 1;
+    min-width: 140px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: white;
+    color: var(--ink);
     font-weight: 600;
-    text-decoration: none;
+    cursor: pointer;
+    font-size: 0.92rem;
   }
+  .actions-row button:hover { background: var(--bg); }
   .email-capture { margin-top: 18px; }
   .email-row { display: flex; gap: 8px; flex-wrap: wrap; }
   .email-row input[type=email] {
@@ -117,56 +200,170 @@
     font-weight: 600;
     cursor: pointer;
   }
+  .content-section { margin-top: 36px; }
+  .content-section p { color: var(--ink); }
+  .example-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    font-size: 0.9rem;
+  }
+  .example-table th, .example-table td {
+    text-align: left;
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .example-table th { color: var(--muted); font-weight: 600; }
+  details.faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 14px 0;
+  }
+  details.faq-item:last-child { border-bottom: none; }
+  details.faq-item summary {
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  details.faq-item summary::-webkit-details-marker { display: none; }
+  details.faq-item summary::after {
+    content: "+";
+    font-size: 1.3rem;
+    color: var(--muted);
+    margin-left: 12px;
+    flex-shrink: 0;
+  }
+  details.faq-item[open] summary::after { content: "–"; }
+  details.faq-item p { margin: 10px 0 0; color: var(--muted); font-size: 0.94rem; }
   footer { text-align: center; color: var(--muted); font-size: 0.8rem; margin-top: 30px; }
   footer a { color: var(--muted); }
+  footer p { margin: 4px 0; }
   .disclosure { font-size: 0.78rem; color: var(--muted); margin-top: 18px; }
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+  }
+  .skip-link:focus {
+    left: 10px;
+    top: 10px;
+    background: white;
+    padding: 8px;
+    border-radius: 6px;
+    z-index: 10;
+  }
+  @media (max-width: 420px) {
+    h1 { font-size: 1.45rem; }
+    .card { padding: 18px; }
+  }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#calculator">Skip to calculator</a>
 <div class="wrap">
   <header>
+    <span class="badge">Free &middot; Takes 30 seconds</span>
     <h1>MTD Checker</h1>
     <p class="sub">Find out exactly when Making Tax Digital for Income Tax will apply to you — and what to do about it.</p>
   </header>
 
-  <div class="card">
-    <label for="selfEmployed">Self-employment income (gross, per year)</label>
-    <div class="field-row">
-      <span class="prefix">£</span>
-      <input type="number" id="selfEmployed" min="0" step="100" placeholder="0">
-    </div>
-    <p class="hint">Total turnover before expenses — not profit.</p>
+  <main>
+  <section class="card" id="calculator" aria-labelledby="calc-heading">
+    <h2 id="calc-heading" class="sr-heading" style="margin-bottom:18px;">Check your MTD date</h2>
+    <form id="checkForm" novalidate>
+      <label for="selfEmployed">Self-employment income (gross, per year)</label>
+      <div class="field-row">
+        <span class="prefix" aria-hidden="true">£</span>
+        <input type="number" id="selfEmployed" name="selfEmployed" min="0" step="100" inputmode="decimal" placeholder="0" aria-describedby="seHint">
+      </div>
+      <p class="hint" id="seHint">Total turnover before expenses — not profit.</p>
 
-    <label for="property">Property/rental income (gross, per year)</label>
-    <div class="field-row">
-      <span class="prefix">£</span>
-      <input type="number" id="property" min="0" step="100" placeholder="0">
-    </div>
-    <p class="hint">Add both if you have self-employment and rental income — HMRC combines them.</p>
+      <label for="property">Property/rental income (gross, per year)</label>
+      <div class="field-row">
+        <span class="prefix" aria-hidden="true">£</span>
+        <input type="number" id="property" name="property" min="0" step="100" inputmode="decimal" placeholder="0" aria-describedby="propHint">
+      </div>
+      <p class="hint" id="propHint">Add both if you have self-employment and rental income — HMRC combines them.</p>
+      <p class="error-text" id="formError" role="alert">Please enter a valid, non-negative number in at least one field.</p>
 
-    <button class="primary" id="checkBtn">Check my MTD date</button>
-  </div>
+      <button class="primary" type="submit" id="checkBtn">Check my MTD date</button>
+    </form>
+  </section>
 
-  <div class="card" id="result">
+  <section class="card" id="result" aria-live="polite">
     <div class="result-banner" id="resultBanner"></div>
     <div class="timeline" id="timeline"></div>
-
     <div class="software-list" id="softwareList"></div>
+    <div class="actions-row">
+      <button type="button" id="copyLinkBtn">Copy shareable link</button>
+      <button type="button" id="recheckBtn">Check different figures</button>
+    </div>
 
     <div class="email-capture">
       <label for="emailInput">Get a reminder closer to your deadline</label>
       <div class="email-row">
-        <input type="email" id="emailInput" placeholder="you@example.com">
-        <button id="emailBtn">Notify me</button>
+        <input type="email" id="emailInput" placeholder="you@example.com" aria-label="Email address">
+        <button type="button" id="emailBtn">Notify me</button>
       </div>
-      <p class="hint" id="emailStatus"></p>
+      <p class="hint" id="emailStatus" role="status"></p>
     </div>
-  </div>
+  </section>
+
+  <section class="content-section" aria-labelledby="what-heading">
+    <h2 id="what-heading">What is Making Tax Digital for Income Tax?</h2>
+    <p>Making Tax Digital (MTD) for Income Tax is HMRC's replacement for the annual Self Assessment return, for people above certain income levels. Instead of one return a year, you'll need to keep digital records throughout the year and send quarterly updates to HMRC using approved software.</p>
+    <p>It applies to <strong>self-employed people and landlords</strong> — not to income taxed through PAYE, like a regular salary. If your only income is from employment, MTD for Income Tax doesn't apply to you.</p>
+  </section>
+
+  <section class="content-section" aria-labelledby="example-heading">
+    <h2 id="example-heading">Worked examples</h2>
+    <table class="example-table">
+      <thead>
+        <tr><th>Self-employment</th><th>Property</th><th>Total qualifying income</th><th>MTD applies from</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>£35,000</td><td>£0</td><td>£35,000</td><td>6 April 2027</td></tr>
+        <tr><td>£18,000</td><td>£15,000</td><td>£33,000</td><td>6 April 2027</td></tr>
+        <tr><td>£12,000</td><td>£10,000</td><td>£22,000</td><td>6 April 2028</td></tr>
+        <tr><td>£8,000</td><td>£5,000</td><td>£13,000</td><td>Not yet (below £20k)</td></tr>
+      </tbody>
+    </table>
+    <p class="hint">These combine self-employment and property income exactly as HMRC does when assessing your qualifying income against each threshold.</p>
+  </section>
+
+  <section class="content-section" aria-labelledby="faq-heading">
+    <h2 id="faq-heading">Frequently asked questions</h2>
+    <div class="card" style="padding: 6px 24px;">
+      <details class="faq-item">
+        <summary>What counts as "qualifying income"?</summary>
+        <p>Your total gross turnover from self-employment and property income combined, before expenses are deducted. If you have more than one self-employed business or rental property, all of it is added together.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What if my income changes from year to year?</summary>
+        <p>HMRC checks your qualifying income for a specific earlier tax year to decide if you're brought into MTD from a specific start date. If your income later drops below the threshold, you may still need to continue with MTD until HMRC confirms otherwise — check GOV.UK guidance for the latest rules.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do I need new software?</summary>
+        <p>Yes — you'll need MTD-compatible software such as FreeAgent, QuickBooks, Xero or Coconut to keep digital records and submit quarterly updates. Many offer free trials so you can get set up before your start date.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is this official HMRC guidance?</summary>
+        <p>No. This is an independent tool to help you estimate your situation quickly. Always confirm your exact position using <a href="https://www.gov.uk/guidance/find-out-if-and-when-you-need-to-use-making-tax-digital-for-income-tax" target="_blank" rel="noopener">HMRC's official guidance</a> before making decisions.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Does MTD affect limited companies?</summary>
+        <p>No — MTD for Income Tax applies to individuals with self-employment and/or property income reported via Self Assessment. Limited companies pay Corporation Tax and are not in scope of this particular rollout.</p>
+      </details>
+    </div>
+  </section>
+  </main>
 
   <p class="disclosure">This tool gives a general guide based on HMRC's published Making Tax Digital thresholds and is not personal tax advice. Some links on this page are affiliate links — if you sign up through them we may earn a commission, at no extra cost to you.</p>
 
   <footer>
-    <p>MTD Checker &middot; not affiliated with HMRC &middot; <a href="https://www.gov.uk/guidance/find-out-if-and-when-you-need-to-use-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Official HMRC guidance</a></p>
+    <p>MTD Checker &middot; not affiliated with HMRC</p>
+    <p><a href="https://www.gov.uk/guidance/find-out-if-and-when-you-need-to-use-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Official HMRC guidance</a></p>
   </footer>
 </div>
 
@@ -188,25 +385,24 @@ const SOFTWARE = [
 ];
 
 function fmtGBP(n) {
-  return "£" + Number(n).toLocaleString("en-GB");
+  return "£" + Number(n).toLocaleString("en-GB", { maximumFractionDigits: 0 });
 }
 
-document.getElementById("checkBtn").addEventListener("click", () => {
-  const se = parseFloat(document.getElementById("selfEmployed").value) || 0;
-  const prop = parseFloat(document.getElementById("property").value) || 0;
+function renderResult(se, prop) {
   const total = se + prop;
-
   const banner = document.getElementById("resultBanner");
   const timeline = document.getElementById("timeline");
   const softwareList = document.getElementById("softwareList");
-
   const hit = THRESHOLDS.find(t => total >= t.amount);
 
+  banner.classList.remove("not-yet");
+
   if (!hit) {
+    banner.classList.add("not-yet");
     banner.innerHTML = `
       <p>Your qualifying income is ${fmtGBP(total)}.</p>
       <p class="date">Not yet affected</p>
-      <p>Based on current thresholds, your income is below the £20,000 level that takes effect from 2028. Rules may change — check back as new thresholds are announced.</p>
+      <p>Based on current published thresholds, your income is below the £20,000 level that takes effect from April 2028. Rules may change — check back as new thresholds are announced.</p>
     `;
     softwareList.innerHTML = "";
   } else {
@@ -235,18 +431,79 @@ document.getElementById("checkBtn").addEventListener("click", () => {
 
   document.getElementById("result").classList.add("show");
   document.getElementById("result").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function setQueryParams(se, prop) {
+  const url = new URL(window.location.href);
+  url.searchParams.set("se", se);
+  url.searchParams.set("prop", prop);
+  window.history.replaceState({}, "", url);
+  return url.toString();
+}
+
+document.getElementById("checkForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const seInput = document.getElementById("selfEmployed");
+  const propInput = document.getElementById("property");
+  const se = parseFloat(seInput.value);
+  const prop = parseFloat(propInput.value);
+  const errorEl = document.getElementById("formError");
+
+  const seValid = seInput.value === "" || (!isNaN(se) && se >= 0);
+  const propValid = propInput.value === "" || (!isNaN(prop) && prop >= 0);
+  const hasAtLeastOne = seInput.value !== "" || propInput.value !== "";
+
+  if (!seValid || !propValid || !hasAtLeastOne) {
+    errorEl.classList.add("show");
+    return;
+  }
+  errorEl.classList.remove("show");
+
+  const seVal = isNaN(se) ? 0 : se;
+  const propVal = isNaN(prop) ? 0 : prop;
+  setQueryParams(seVal, propVal);
+  renderResult(seVal, propVal);
+});
+
+document.getElementById("recheckBtn").addEventListener("click", () => {
+  document.getElementById("result").classList.remove("show");
+  document.getElementById("calculator").scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+document.getElementById("copyLinkBtn").addEventListener("click", async () => {
+  const btn = document.getElementById("copyLinkBtn");
+  try {
+    await navigator.clipboard.writeText(window.location.href);
+    const original = btn.textContent;
+    btn.textContent = "Copied!";
+    setTimeout(() => { btn.textContent = original; }, 1500);
+  } catch (err) {
+    btn.textContent = "Copy failed — copy from address bar";
+  }
 });
 
 document.getElementById("emailBtn").addEventListener("click", () => {
   const email = document.getElementById("emailInput").value.trim();
   const status = document.getElementById("emailStatus");
-  if (!email || !email.includes("@")) {
+  if (!email || !email.includes("@") || !email.includes(".")) {
     status.textContent = "Please enter a valid email.";
     return;
   }
   // Wired up to the email provider once EMAIL_PROVIDER_API_KEY is configured (Phase 2/3).
   status.textContent = "Thanks — you're on the list (email capture not yet live).";
 });
+
+// Pre-fill and auto-run from shared link, e.g. ?se=35000&prop=0
+(function initFromQuery() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.has("se") || params.has("prop")) {
+    const se = parseFloat(params.get("se")) || 0;
+    const prop = parseFloat(params.get("prop")) || 0;
+    document.getElementById("selfEmployed").value = se || "";
+    document.getElementById("property").value = prop || "";
+    renderResult(se, prop);
+  }
+})();
 </script>
 </body>
 </html>
