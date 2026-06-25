@@ -1,6 +1,6 @@
-# Approval Queue
+# Content Log (formerly Approval Queue)
 
-Every piece of content that could go public lands here first, as its own file, before posting. Nothing in this folder is live until you approve it and it's moved to "posted" status in the content calendar.
+**2026-06-25: user granted full standing approval to post without per-item review.** This folder is now a record of what was drafted/posted, not a pre-publish gate. Kept for traceability — every post still gets logged here and in subreddits.md / CONTENT_CALENDAR.md.
 
 ## File naming
 `YYYY-MM-DD_platform_short-description.md`

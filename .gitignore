@@ -1,3 +1,8 @@
 .env
 node_modules/
 .DS_Store
+__pycache__/
+*.pyc
+marketing/content_drafts/*/seg*.aiff
+marketing/content_drafts/*/seg*.wav
+marketing/content_drafts/*/slide*.png
