@@ -54,6 +54,22 @@
         "@type": "Answer",
         "text": "Yes. You will need HMRC-recognised MTD-compatible software, such as FreeAgent, QuickBooks, Xero or Coconut, to keep digital records and submit quarterly updates."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I miss a Making Tax Digital deadline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MTD uses a points-based penalty system. You get one penalty point per missed quarterly update or return deadline; a £200 fine applies once you reach 4 points on quarterly submissions (2 points for annual). Points expire 24 months after the missed deadline if you stay under the threshold. The 2026/27 tax year has a soft landing with no penalties for missed quarterly updates for newly joining individuals."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does my PAYE salary count towards the Making Tax Digital threshold?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Only self-employment and property qualifying income counts towards the Making Tax Digital thresholds. Income already taxed through PAYE, such as a salary, is excluded."
+      }
     }
   ]
 }
@@ -202,6 +218,8 @@
   }
   .content-section { margin-top: 36px; }
   .content-section p { color: var(--ink); }
+  .content-section ul, .content-section ol { padding-left: 20px; }
+  .content-section li { margin-bottom: 8px; }
   .example-table {
     width: 100%;
     border-collapse: collapse;
@@ -332,6 +350,30 @@
     <p class="hint">These combine self-employment and property income exactly as HMRC does when assessing your qualifying income against each threshold.</p>
   </section>
 
+  <section class="content-section" aria-labelledby="penalty-heading">
+    <h2 id="penalty-heading">What happens if you miss a deadline?</h2>
+    <p>MTD uses a points-based penalty system, separate from the existing late-payment penalties:</p>
+    <ul>
+      <li>You get <strong>1 penalty point</strong> for each missed quarterly update or return deadline.</li>
+      <li>If you submit quarterly, a <strong>£200 fine</strong> kicks in once you reach <strong>4 points</strong>. If you submit annually, it's after 2 points.</li>
+      <li>Points expire automatically 24 months after the missed deadline, as long as you stay under the threshold.</li>
+      <li><strong>2026/27 is a "soft landing" year</strong> — no penalties for missed quarterly updates if you're newly joining, though you must still keep digital records and submit before your tax return deadline.</li>
+      <li>Late payment still has its own grace period: 30 days in your first year in MTD, then 15 days from year two onwards.</li>
+    </ul>
+    <p class="hint">Source: <a href="https://www.gov.uk/guidance/penalties-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">HMRC penalty guidance</a> — rules can change, always check the latest version.</p>
+  </section>
+
+  <section class="content-section" aria-labelledby="checklist-heading">
+    <h2 id="checklist-heading">What to do before your start date</h2>
+    <ol>
+      <li><strong>Confirm your exact date</strong> using the calculator above, and double-check against HMRC's official checker.</li>
+      <li><strong>Choose MTD-compatible software</strong> — ideally a few months before your start date so you're comfortable with it.</li>
+      <li><strong>Start keeping digital records early</strong> — you don't have to wait for your start date to begin, and it makes the transition smoother.</li>
+      <li><strong>Know your quarterly deadlines</strong> — typically falling about a month after each quarter ends.</li>
+      <li><strong>Talk to an accountant</strong> if your situation is complex (multiple businesses, partnerships, or income near a threshold).</li>
+    </ol>
+  </section>
+
   <section class="content-section" aria-labelledby="faq-heading">
     <h2 id="faq-heading">Frequently asked questions</h2>
     <div class="card" style="padding: 6px 24px;">
@@ -355,6 +397,18 @@
         <summary>Does MTD affect limited companies?</summary>
         <p>No — MTD for Income Tax applies to individuals with self-employment and/or property income reported via Self Assessment. Limited companies pay Corporation Tax and are not in scope of this particular rollout.</p>
       </details>
+      <details class="faq-item">
+        <summary>I'm employed (PAYE) and self-employed — does my salary count?</summary>
+        <p>No. MTD for Income Tax only looks at your self-employment and property qualifying income. Income already taxed through PAYE, like a salary, is not included when checking against the thresholds.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I join Making Tax Digital voluntarily before I'm required to?</summary>
+        <p>Yes. HMRC allows eligible individuals to opt in early if they want to get used to digital record-keeping ahead of their mandatory start date. Check current eligibility on GOV.UK before signing up.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What if I'm in a partnership?</summary>
+        <p>General partnerships are being brought into MTD for Income Tax on a separate, later timetable to individuals. If you're in a partnership, check HMRC's specific guidance rather than relying on the individual thresholds above.</p>
+      </details>
     </div>
   </section>
   </main>
@@ -363,7 +417,8 @@
 
   <footer>
     <p>MTD Checker &middot; not affiliated with HMRC</p>
-    <p><a href="https://www.gov.uk/guidance/find-out-if-and-when-you-need-to-use-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Official HMRC guidance</a></p>
+    <p><a href="https://www.gov.uk/guidance/find-out-if-and-when-you-need-to-use-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Official HMRC guidance</a> &middot; <a href="https://www.gov.uk/guidance/penalties-for-making-tax-digital-for-income-tax" target="_blank" rel="noopener">Penalty guidance</a></p>
+    <p>Thresholds and rules last checked: June 2026</p>
   </footer>
 </div>
 
